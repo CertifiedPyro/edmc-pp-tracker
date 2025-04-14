@@ -1,4 +1,4 @@
-# ed-merit-tracker
+# ed-pp-tracker
 Elite Dangerous merit tracker for Powerplay 2.0.
 
 Please note that this plugin is still in very early development, so the following issues exist:
