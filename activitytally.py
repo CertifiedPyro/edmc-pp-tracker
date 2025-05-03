@@ -27,7 +27,7 @@ class ActivityTally:
     sell_profit: int = 0  # Sell for Large Profits (>40%)
     mining: int = 0  # Sell Mined Resources
     pp_commodities: int = 0  # Transport Power Commodities (papers)
-    rare_goods: int = 0  # (Disabled) Sell Rare Goods
+    rare_goods: int = 0  # Sell Rare Goods
 
     # Misc
     crimes: int = 0  # Commit Crimes

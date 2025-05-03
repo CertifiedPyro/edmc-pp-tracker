@@ -1,4 +1,5 @@
 import copy
+import csv
 import dataclasses
 import json
 import os
@@ -13,6 +14,14 @@ from activitytally import ActivityTally
 class ActivityManager:
     def __init__(self, logger: Logger):
         self.logger = logger
+
+        # Plugin variables, which are initialized on plugin start.
+        self.plugin_dir: str
+        self.tallies_dir: str
+        self.tally_file: str
+
+        # Extra data that's loaded on plugin start.
+        self.rare_goods_set = set()
 
         # TODO: Keep track of cmdr name
         self.cmdr_power: str = ''
@@ -30,6 +39,7 @@ class ActivityManager:
         self.tallies_dir = os.path.join(self.plugin_dir, 'tallies')
         self.tally_file = os.path.join(self.tallies_dir, 'tally.json')
 
+        self.rare_goods_set = self._load_rare_goods()
         tallies = self._load_tallies()
         if tallies is not None:
             self.system_tallies = tallies
@@ -72,7 +82,10 @@ class ActivityManager:
         reset_last_entry = True
 
         # Aid
-        if event == 'SearchAndRescue':
+        if event == 'MissionCompleted':
+            if entry['Name'] in ['Mission_Altruism_name', 'Mission_AltruismCredits_name']:
+                tally.donation_missions += merits
+        elif event == 'SearchAndRescue':
             # Assume this is salvage, since escape pods are disabled
             # TODO: Update once escape pods are re-enabled
             # TODO: Handle potential UM system
@@ -127,8 +140,10 @@ class ActivityManager:
         
         # Trade
         elif event == 'MarketSell':
+            if entry['Type'].lower() in self.rare_goods_set:
+                tally.rare_goods += merits
             # Assume that 0 price commodities only come from mining, and they aren't mixed with bought commodities.
-            if entry['AvgPricePaid'] == 0:
+            elif entry['AvgPricePaid'] == 0:
                 tally.mining += merits
             # TODO: Check if this includes commodities that are exactly 500Cr.
             elif entry['SellPrice'] < 500:
@@ -156,7 +171,16 @@ class ActivityManager:
         event = entry['event']
         
         # Ignore ship/wake scans
+        # TODO for the following events:
+        # - Reboot Mission Completion
+        # - Upload Powerplay-specific Malware
+        # - Holoscreen hacking
+        # - Scan Datalinks (at Megaships)
         if event in [
+                # Complete Aid and Humanitarian Missions
+                'MissionCompleted',
+                # Hand in Salvage
+                'SearchAndRescue',
                 # Bounty Hunting
                 'Bounty',
                 # Power Kills
@@ -173,11 +197,10 @@ class ActivityManager:
                 # Flood Markets with Low Value Goods
                 # Sell for Large Profits
                 # Sell Mined Resources
+                # Sell Rare Goods
                 'MarketSell',
                 # Commit Crimes
-                'CommitCrime',
-                # Hand in Salvage
-                'SearchAndRescue']:
+                'CommitCrime']:
             self.last_pp_entry = copy.deepcopy(entry)
 
 
@@ -234,3 +257,20 @@ class ActivityManager:
             self.logger.error(f"Error: A file with the name '{new_file_name}' already exists.")
         except OSError as e:
             self.logger.error(f"Error renaming tally file: {e}")
+
+
+    def _load_rare_goods(self):
+        # File is copied from https://github.com/EDCD/FDevIDs/blob/master/rare_commodity.csv.
+        filename = os.path.join(self.plugin_dir, 'data', 'rare_commodity.csv')
+        try:
+            rare_goods = set()
+            with open(filename, 'r') as f:
+                reader = csv.reader(f)
+                next(reader)
+
+                for row in reader:
+                    rare_goods.add(row[1].lower())
+            return rare_goods
+        except Exception as e:
+            self.logger.error(f"An unexpected error occurred while loading from '{filename}': {e}")
+            return set()

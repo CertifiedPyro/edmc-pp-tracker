@@ -47,43 +47,43 @@ class UI:
         tk.Frame(self.table, width=2, bg="black").grid(row=0, column=col, rowspan=len(system_tallies)+2, sticky="ns", padx=5); col += 1
 
         # Aid activities
-        tk.Label(self.table, text="Aid (WIP)").grid(row=0, column=col, columnspan=3, padx=2, pady=2)
-        tk.Label(self.table, text="Donate").grid(row=1, column=col, padx=2, pady=2); col += 1
-        tk.Label(self.table, text="Pods (X)").grid(row=1, column=col, padx=2, pady=2); col += 1
-        tk.Label(self.table, text="Salv").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Aid (WIP)").grid(row=0, column=col, columnspan=2, padx=2, pady=2)
+        tk.Label(self.table, text="Dono").grid(row=1, column=col, padx=2, pady=2); col += 1
+        # tk.Label(self.table, text="Pods (X)").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Salvage").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Frame(self.table, width=1, bg="black").grid(row=0, column=col, rowspan=len(system_tallies)+2, sticky="ns", padx=5); col += 1
 
         # Combat activities
         tk.Label(self.table, text="Combat").grid(row=0, column=col, columnspan=2, padx=2, pady=2)
-        tk.Label(self.table, text="BH").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Bounty").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="PK").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Frame(self.table, width=1, bg="black").grid(row=0, column=col, rowspan=len(system_tallies)+2, sticky="ns", padx=5); col += 1
 
         # Exploration activities
         tk.Label(self.table, text="Exploration").grid(row=0, column=col, columnspan=2, padx=2, pady=2)
-        tk.Label(self.table, text="ExoBio").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Exobio").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Expl").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Frame(self.table, width=1, bg="black").grid(row=0, column=col, rowspan=len(system_tallies)+2, sticky="ns", padx=5); col += 1
 
         # Odyssey activities
         tk.Label(self.table, text="Odyssey (WIP)").grid(row=0, column=col, columnspan=4, padx=2, pady=2)
-        tk.Label(self.table, text="Reboots").grid(row=1, column=col, padx=2, pady=2); col += 1
-        tk.Label(self.table, text="Goods").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Data").grid(row=1, column=col, padx=2, pady=2); col += 1
-        tk.Label(self.table, text="Mal").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Goods").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Malware").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Reboots").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Frame(self.table, width=1, bg="black").grid(row=0, column=col, rowspan=len(system_tallies)+2, sticky="ns", padx=5); col += 1
 
         # Trade activities
         tk.Label(self.table, text="Trade").grid(row=0, column=col, columnspan=5, padx=2, pady=2)
-        tk.Label(self.table, text="Low").grid(row=1, column=col, padx=2, pady=2); col += 1
-        tk.Label(self.table, text="Profit").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Mine").grid(row=1, column=col, padx=2, pady=2); col += 1
-        tk.Label(self.table, text="Comod").grid(row=1, column=col, padx=2, pady=2); col += 1
-        tk.Label(self.table, text="Rare (X)").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Profit").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Rare").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="PC").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Low").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Frame(self.table, width=1, bg="black").grid(row=0, column=col, rowspan=len(system_tallies)+2, sticky="ns", padx=5); col += 1
 
         # Misc activities
-        tk.Label(self.table, text="Misc").grid(row=0, column=col, columnspan=4, padx=2, pady=2)
+        tk.Label(self.table, text="Misc").grid(row=0, column=col, columnspan=5, padx=2, pady=2)
         tk.Label(self.table, text="Crimes").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Holo (WIP)").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Scan").grid(row=1, column=col, padx=2, pady=2); col += 1
@@ -103,7 +103,7 @@ class UI:
 
             # Aid activities
             tk.Label(self.table, text=str(tally.donation_missions)).grid(row=row, column=col, padx=2, pady=2); col += 1
-            tk.Label(self.table, text=str(tally.escape_pods)).grid(row=row, column=col, padx=2, pady=2); col += 1
+            # tk.Label(self.table, text=str(tally.escape_pods)).grid(row=row, column=col, padx=2, pady=2); col += 1
             tk.Label(self.table, text=str(tally.salvage)).grid(row=row, column=col, padx=2, pady=2); col += 1
             col += 1
 
@@ -118,18 +118,18 @@ class UI:
             col += 1
 
             # Odyssey activities
-            tk.Label(self.table, text=str(tally.reboot_missions)).grid(row=row, column=col, padx=2, pady=2); col += 1
-            tk.Label(self.table, text=str(tally.odyssey_goods)).grid(row=row, column=col, padx=2, pady=2); col += 1
             tk.Label(self.table, text=str(tally.odyssey_data)).grid(row=row, column=col, padx=2, pady=2); col += 1
+            tk.Label(self.table, text=str(tally.odyssey_goods)).grid(row=row, column=col, padx=2, pady=2); col += 1
             tk.Label(self.table, text=str(tally.odyssey_malware)).grid(row=row, column=col, padx=2, pady=2); col += 1
+            tk.Label(self.table, text=str(tally.reboot_missions)).grid(row=row, column=col, padx=2, pady=2); col += 1
             col += 1
 
             # Trade activities
-            tk.Label(self.table, text=str(tally.flood_low_value)).grid(row=row, column=col, padx=2, pady=2); col += 1
-            tk.Label(self.table, text=str(tally.sell_profit)).grid(row=row, column=col, padx=2, pady=2); col += 1
             tk.Label(self.table, text=str(tally.mining)).grid(row=row, column=col, padx=2, pady=2); col += 1
-            tk.Label(self.table, text=str(tally.pp_commodities)).grid(row=row, column=col, padx=2, pady=2); col += 1
+            tk.Label(self.table, text=str(tally.sell_profit)).grid(row=row, column=col, padx=2, pady=2); col += 1
             tk.Label(self.table, text=str(tally.rare_goods)).grid(row=row, column=col, padx=2, pady=2); col += 1
+            tk.Label(self.table, text=str(tally.pp_commodities)).grid(row=row, column=col, padx=2, pady=2); col += 1
+            tk.Label(self.table, text=str(tally.flood_low_value)).grid(row=row, column=col, padx=2, pady=2); col += 1
             col += 1
 
             # Misc activities
@@ -143,8 +143,7 @@ class UI:
         # Add button for creating new report
         if file == '':
             new_report_text = "Create a new report:"
-            tk.Label(self.table, text=new_report_text).grid(row=row, column=0, columnspan=4, padx=2, pady=2)
-            tk.Button(self.table, text='Create new PP report', command=self._create_new_report).grid(row=row, column=4, columnspan=3, padx=2, pady=2)
+            tk.Button(self.table, text='Create new PP report', command=self._create_new_report).grid(row=row, column=0, columnspan=3, padx=2, pady=2)
 
 
     def _window_closed(self):
