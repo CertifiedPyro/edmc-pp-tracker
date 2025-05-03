@@ -79,7 +79,7 @@ class UI:
         tk.Label(self.table, text="Profit").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Mine").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Comod").grid(row=1, column=col, padx=2, pady=2); col += 1
-        tk.Label(self.table, text="Rare (X)").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Rare").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Frame(self.table, width=1, bg="black").grid(row=0, column=col, rowspan=len(system_tallies)+2, sticky="ns", padx=5); col += 1
 
         # Misc activities

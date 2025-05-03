@@ -139,6 +139,8 @@ class ActivityManager:
             # Assume that 0 price commodities only come from mining, and they aren't mixed with bought commodities.
             if entry['AvgPricePaid'] == 0:
                 tally.mining += merits
+            elif entry['Type'].lower() in self.rare_goods_set:
+                tally.rare_goods += merits
             # TODO: Check if this includes commodities that are exactly 500Cr.
             elif entry['SellPrice'] < 500:
                 tally.flood_low_value += merits
@@ -243,7 +245,8 @@ class ActivityManager:
             self.logger.error(f"Error: A file with the name '{new_file_name}' already exists.")
         except OSError as e:
             self.logger.error(f"Error renaming tally file: {e}")
-    
+
+
     def _load_rare_goods(self):
         # File is copied from https://github.com/EDCD/FDevIDs/blob/master/rare_commodity.csv.
         filename = os.path.join(self.plugin_dir, 'data', 'rare_commodity.csv')
@@ -253,6 +256,6 @@ class ActivityManager:
                 next(reader)
 
                 for row in reader:
-                    self.rare_goods_set.add(row[1])
+                    self.rare_goods_set.add(row[1].lower())
         except Exception as e:
             self.logger.error(f"An unexpected error occurred while loading from '{filename}': {e}")
