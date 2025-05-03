@@ -1,4 +1,5 @@
 import copy
+import csv
 import dataclasses
 import json
 import os
@@ -13,6 +14,14 @@ from activitytally import ActivityTally
 class ActivityManager:
     def __init__(self, logger: Logger):
         self.logger = logger
+
+        # Plugin variables, which are initialized on plugin start.
+        self.plugin_dir: str
+        self.tallies_dir: str
+        self.tally_file: str
+
+        # Extra data that's loaded on plugin start.
+        self.rare_goods_set = set()
 
         # TODO: Keep track of cmdr name
         self.cmdr_power: str = ''
@@ -234,3 +243,16 @@ class ActivityManager:
             self.logger.error(f"Error: A file with the name '{new_file_name}' already exists.")
         except OSError as e:
             self.logger.error(f"Error renaming tally file: {e}")
+    
+    def _load_rare_goods(self):
+        # File is copied from https://github.com/EDCD/FDevIDs/blob/master/rare_commodity.csv.
+        filename = os.path.join(self.plugin_dir, 'data', 'rare_commodity.csv')
+        try:
+            with open(filename, 'r') as f:
+                reader = csv.reader(f)
+                next(reader)
+
+                for row in reader:
+                    self.rare_goods_set.add(row[1])
+        except Exception as e:
+            self.logger.error(f"An unexpected error occurred while loading from '{filename}': {e}")
