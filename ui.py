@@ -75,7 +75,7 @@ class UI:
 
         # Trade activities
         tk.Label(self.table, text="Trade").grid(row=0, column=col, columnspan=5, padx=2, pady=2)
-        tk.Label(self.table, text="Mining").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Mine").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Profit").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Rare").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="PC").grid(row=1, column=col, padx=2, pady=2); col += 1
