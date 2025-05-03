@@ -143,8 +143,7 @@ class UI:
         # Add button for creating new report
         if file == '':
             new_report_text = "Create a new report:"
-            tk.Label(self.table, text=new_report_text).grid(row=row, column=0, columnspan=4, padx=2, pady=2)
-            tk.Button(self.table, text='Create new PP report', command=self._create_new_report).grid(row=row, column=4, columnspan=3, padx=2, pady=2)
+            tk.Button(self.table, text='Create new PP report', command=self._create_new_report).grid(row=row, column=0, columnspan=3, padx=2, pady=2)
 
 
     def _window_closed(self):
