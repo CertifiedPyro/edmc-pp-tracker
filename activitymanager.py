@@ -82,6 +82,7 @@ class ActivityManager:
         reset_last_entry = True
 
         # Aid
+        # TODO: Donation missions
         if event == 'SearchAndRescue':
             # Assume this is salvage, since escape pods are disabled
             # TODO: Update once escape pods are re-enabled
@@ -168,7 +169,14 @@ class ActivityManager:
         event = entry['event']
         
         # Ignore ship/wake scans
+        # TODO for the following events:
+        # - Reboot Mission Completion
+        # - Upload Powerplay-specific Malware
+        # - Holoscreen hacking
+        # - Scan Datalinks (at Megaships)
         if event in [
+                # Hand in Salvage
+                'SearchAndRescue',
                 # Bounty Hunting
                 'Bounty',
                 # Power Kills
@@ -185,11 +193,10 @@ class ActivityManager:
                 # Flood Markets with Low Value Goods
                 # Sell for Large Profits
                 # Sell Mined Resources
+                # Sell Rare Goods
                 'MarketSell',
                 # Commit Crimes
-                'CommitCrime',
-                # Hand in Salvage
-                'SearchAndRescue']:
+                'CommitCrime']:
             self.last_pp_entry = copy.deepcopy(entry)
 
 

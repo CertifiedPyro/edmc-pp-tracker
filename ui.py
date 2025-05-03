@@ -83,7 +83,7 @@ class UI:
         tk.Frame(self.table, width=1, bg="black").grid(row=0, column=col, rowspan=len(system_tallies)+2, sticky="ns", padx=5); col += 1
 
         # Misc activities
-        tk.Label(self.table, text="Misc").grid(row=0, column=col, columnspan=4, padx=2, pady=2)
+        tk.Label(self.table, text="Misc").grid(row=0, column=col, columnspan=5, padx=2, pady=2)
         tk.Label(self.table, text="Crimes").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Holo (WIP)").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Scan").grid(row=1, column=col, padx=2, pady=2); col += 1
