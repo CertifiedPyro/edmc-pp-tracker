@@ -48,7 +48,7 @@ class UI:
 
         # Aid activities
         tk.Label(self.table, text="Aid (WIP)").grid(row=0, column=col, columnspan=3, padx=2, pady=2)
-        tk.Label(self.table, text="Donate").grid(row=1, column=col, padx=2, pady=2); col += 1
+        tk.Label(self.table, text="Dono").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Pods (X)").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Label(self.table, text="Salv").grid(row=1, column=col, padx=2, pady=2); col += 1
         tk.Frame(self.table, width=1, bg="black").grid(row=0, column=col, rowspan=len(system_tallies)+2, sticky="ns", padx=5); col += 1

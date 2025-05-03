@@ -82,8 +82,10 @@ class ActivityManager:
         reset_last_entry = True
 
         # Aid
-        # TODO: Donation missions
-        if event == 'SearchAndRescue':
+        if event == 'MissionCompleted':
+            if entry['Name'] in ['Mission_Altruism_name', 'Mission_AltruismCredits_name']:
+                tally.donation_missions += merits
+        elif event == 'SearchAndRescue':
             # Assume this is salvage, since escape pods are disabled
             # TODO: Update once escape pods are re-enabled
             # TODO: Handle potential UM system
@@ -175,6 +177,8 @@ class ActivityManager:
         # - Holoscreen hacking
         # - Scan Datalinks (at Megaships)
         if event in [
+                # Complete Aid and Humanitarian Missions
+                'MissionCompleted',
                 # Hand in Salvage
                 'SearchAndRescue',
                 # Bounty Hunting
