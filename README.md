@@ -3,7 +3,7 @@ Elite Dangerous merit tracker for Powerplay 2.0.
 
 Please note that this plugin is still in very early development, so the following issues exist:
 - Some activities are not tracked currently
-  - Donation missions, reboot missions, Odyssey malware, holoscreen hacking, and megaship scans
+  - Reboot missions, Odyssey malware, holoscreen hacking, and megaship scans
 - Activities which require turning in stuff at a different system won't be properly attributed to the correct system
   - Examples include Odyssey data/goods from acquisition and undermining systems, and salvage
 - UI is very unpolished
